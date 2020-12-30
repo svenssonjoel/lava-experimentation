@@ -4,13 +4,13 @@ import Signal
 import Sequent
 import Error
 
-import LavaRandom
+import Compilers.Ghc.LavaRandom
   ( Rnd
   , split
   , next
   )
 
-import List
+import Data.List
   ( transpose
   )
 

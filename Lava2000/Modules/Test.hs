@@ -4,7 +4,7 @@ import Signal
 import Sequential
 import Generic
 
-import LavaRandom
+import Compilers.Ghc.LavaRandom
   ( newRnd
   )
 

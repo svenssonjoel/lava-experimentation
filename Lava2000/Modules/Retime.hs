@@ -8,7 +8,7 @@ import Generic
 import Sequent
 import Netlist
 
-import List
+import Data.List
   ( isPrefixOf
   )
 

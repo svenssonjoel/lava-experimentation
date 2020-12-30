@@ -1,4 +1,4 @@
-module UnsafeCoerce
+module Compilers.Ghc.UnsafeCoerce
   ( unsafeCoerce
   )
  where

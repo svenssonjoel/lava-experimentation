@@ -13,12 +13,12 @@ import LavaDir
 import Sequent
 import Netlist
 import Verification
-import IOBuffering
+import Compilers.Ghc.IOBuffering
 
-import Array
+import Data.Array
 import MyST
-import List(intersperse)
-import System.Cmd (system)
+import Data.List(intersperse)
+import System.Process (system)
 import System.Exit (ExitCode(..))
 
 ----------------------------------------------------------------------------------------------------
@@ -35,6 +35,8 @@ data IscMethod
 
 isc :: Checkable a => a -> IO ProofResult
 isc = iscWith Mixed 10
+
+getLavaDir = return "$HOME/.lava"
 
 iscWith :: Checkable a => IscMethod -> Int -> a -> IO ProofResult
 iscWith m n a =

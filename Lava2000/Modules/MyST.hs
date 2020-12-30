@@ -1,3 +1,5 @@
+{-# LANGUAGE RankNTypes #-}
+
 module MyST
   ( ST
   , STRef
@@ -25,6 +27,13 @@ unST (ST io) = io
 
 instance Functor (ST s) where
   fmap f (ST io) = ST (fmap f io)
+
+instance Applicative (ST s) where
+  pure a = ST (return a)
+  (ST f) <*> (ST a) = ST ( do f' <- f
+                              a' <- a
+                              return $ f' a' )
+  
 
 instance Monad (ST s) where
   return a    = ST (return a)

@@ -1,4 +1,4 @@
-module Main where
+module LavaMain where
 
 import Lava
 import Patterns

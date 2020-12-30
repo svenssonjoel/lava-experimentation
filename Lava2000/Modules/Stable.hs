@@ -15,7 +15,7 @@ import MyST
   , unsafeInterleaveST
   )
 
-import List
+import Data.List
   ( isPrefixOf
   )
 

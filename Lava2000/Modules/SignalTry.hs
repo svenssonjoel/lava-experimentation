@@ -1,3 +1,5 @@
+{-# LANGUAGE ExistentialQuantification #-}
+module SignalTry where
 
 import Ref
 

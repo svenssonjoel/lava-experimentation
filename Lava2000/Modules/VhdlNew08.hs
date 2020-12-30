@@ -15,23 +15,19 @@ import Sequent
 import Error
 import LavaDir
 
-import List
+import Data.List
   ( intersperse
   , nub
   )
 
-import IO
+import System.IO
   ( openFile
   , IOMode(..)
   , hPutStr
   , hClose
   )
 
-import System.IO
-  ( stdout
-  , BufferMode (..)
-  , hSetBuffering
-  )
+import Compilers.Ghc.IOBuffering
 
 import Data.IORef
 
@@ -93,7 +89,7 @@ writeVhdlInputOutput clocked name circ inp out =
 
 writeItAll :: (Generic a, Generic b) => Bool -> String -> a -> b -> b -> IO ()
 writeItAll clocked name inp out out' =
-  do hSetBuffering stdout NoBuffering 
+  do noBuffering
      putStr ("Writing to file \"" ++ file ++ "\" ... ")
      writeDefinitions clocked file name inp out out'
      putStrLn "Done."

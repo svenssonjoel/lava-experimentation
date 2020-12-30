@@ -1,4 +1,4 @@
-module LavaRandom
+module Compilers.Ghc.LavaRandom
   ( Rnd
   , newRnd
   , next
@@ -6,7 +6,7 @@ module LavaRandom
   )
  where
 
-import Random
+import System.Random
   ( StdGen
   , newStdGen
   , next

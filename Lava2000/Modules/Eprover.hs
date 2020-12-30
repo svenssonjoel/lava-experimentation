@@ -12,20 +12,20 @@ import Error
 import LavaDir
 import Verification
 
-import List
+import Data.List
   ( intersperse
   , nub
   )
 
-import IO
+import System.IO
   ( openFile
   , IOMode(..)
   , hPutStrLn
   , hClose
-  , try
   )
+import System.IO.Error (tryIOError)
 
-import IOBuffering
+import Compilers.Ghc.IOBuffering
   ( noBuffering
   )
 
@@ -121,8 +121,8 @@ writeDefinitions file props =
      clause "conjecture" [ "--truth(" ++ v ++ ")" | v <- flatten outvs ]
      hClose han
 
-     try (do readFile theoryFile
-             system ("cat " ++ theoryFile ++ " >> " ++ file))
+     tryIOError (do readFile theoryFile
+                    system ("cat " ++ theoryFile ++ " >> " ++ file))
 
      return ()
  where
@@ -130,6 +130,8 @@ writeDefinitions file props =
 
 ----------------------------------------------------------------
 -- primitive proving
+
+getLavaDir = return "$Home/.lava"
 
 proveFile :: FilePath -> IO () -> IO ProofResult
 proveFile file before =

@@ -12,19 +12,19 @@ import Error
 import LavaDir
 import Verification
 
-import List
+import Data.List
   ( intersperse
   , nub
   )
 
-import IO
+import System.IO
   ( openFile
   , IOMode(..)
   , hPutStr
   , hClose
   )
 
-import IOBuffering
+import Compilers.Ghc.IOBuffering
   ( noBuffering
   )
 
@@ -131,6 +131,8 @@ writeDefinitions file props =
 
 ----------------------------------------------------------------
 -- primitive proving
+
+getLavaDir = return "$HOME/.lava"
 
 proveFile :: FilePath -> IO () -> IO ProofResult
 proveFile file before =

@@ -4,7 +4,7 @@ import Ref
 import Sequent
 import Error
 
-import List
+import Data.List
   ( transpose
   )
 

@@ -22,14 +22,15 @@ module Property
 import Signal
 import Generic
 
-import Monad
+import Control.Monad
   ( liftM2
   , liftM3
   , liftM4
   , liftM5
+  , ap
   )
 
-import List
+import Data.List
   ( intersperse
   , transpose
   )
@@ -46,6 +47,10 @@ newtype Gen a
 instance Functor Gen where
   fmap f (Gen m) = Gen (\t -> f (m t))
 
+instance Applicative Gen where
+  pure a = Gen (\t -> a)
+  (<*>) = ap
+  
 instance Monad Gen where
   return a =
     Gen (\t -> a)

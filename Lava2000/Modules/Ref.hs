@@ -24,7 +24,7 @@ import System.IO
 import System.IO.Unsafe
 import Data.IORef
 
-import UnsafeCoerce
+import Unsafe.Coerce
   ( unsafeCoerce
   )
 

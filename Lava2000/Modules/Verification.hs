@@ -16,26 +16,26 @@ import Property
 import Error
 import LavaDir
 
-import List
+import Data.List
   ( intersperse
   , isPrefixOf
   , nub
   )
 
-import IO
+import System.IO
   ( openFile
   , IOMode(..)
   , hPutStr
   , hClose
   )
 
-import IOBuffering
+import Compilers.Ghc.IOBuffering
   ( noBuffering
   )
 
 import Data.IORef
 
-import System.Cmd (system)
+import System.Process (system)
 import System.Exit (ExitCode(..))
 
 verifyDir :: FilePath
@@ -258,6 +258,8 @@ data ProofResult
   | Falsifiable
   | Indeterminate
  deriving (Eq, Show)
+
+getLavaDir = return $ "$HOME/.lava"
 
 proveFile :: FilePath -> IO () -> [String] -> [Option] -> IO ProofResult
 proveFile file before labels options =
