@@ -3,6 +3,14 @@ module Main where
 import Lib
 
 import Lava
+import Arithmetic
+
+import Vhdl
+
+------------------------------------------------------------
+-- Lava experimentation test 0
+
 
 main :: IO ()
-main = someFunc
+main = writeVhdl "test" and2
+
