@@ -13,7 +13,7 @@ import Generic
 import Sequent
 import Property
 import Error
-import LavaDir
+import LavaConf
 import Verification
 
 import Data.List
@@ -216,16 +216,13 @@ writeDefinitions file name minp out out' =
 ----------------------------------------------------------------
 -- equivalence checking
 
-getLavaDir = return "$HOME/.lava"
-
 equivCheckVisInput circ1 circ2 inp =
   do checkVerifyDir
      noBuffering
      writeVisInput name1 circ1 inp
      writeVisInput name2 circ2 inp
      putStr "Vis: ... "
-     lavadir <- getLavaDir
-     x <- system ( lavadir
+     x <- system ( lavaDirectory
                 ++ "/Scripts/vis.wrapper "
                 ++ name1 ++ " " ++ name2
                 ++ " -showTime"
@@ -249,8 +246,7 @@ proveFile file before =
   do putStr "Vis: "
      before
      putStr "... "
-     lavadir <- getLavaDir
-     x <- system ( lavadir
+     x <- system ( lavaDirectory
                 ++ "/Scripts/vis-reach.wrapper "
                 ++ file
                 ++ " -showTime"

@@ -9,7 +9,7 @@ import Generic
 import Sequent
 import Property
 import Error
-import LavaDir
+import LavaConf
 import Verification
 
 import Data.List
@@ -127,15 +127,12 @@ writeDefinitions file props =
 ----------------------------------------------------------------
 -- primitive proving
 
-getLavaDir = return "$HOME/.lava"
-
 proveFile :: FilePath -> IO () -> IO ProofResult
 proveFile file before =
   do putStr "Limmat: "
      before
      putStr "... "
-     lavadir <- getLavaDir
-     x <- system ( lavadir
+     x <- system ( lavaDirectory
                 ++ "/Scripts/limmat.wrapper "
                 ++ file
                 ++ " -showTime"

@@ -9,7 +9,7 @@ import Generic
 import Sequent
 import Property
 import Error
-import LavaDir
+import LavaConf
 import Verification
 
 import Data.List
@@ -109,16 +109,13 @@ writeDefinitions file props =
 ----------------------------------------------------------------
 -- primitive proving
 
-getLavaDir = return "$HOME/.lava"
-
 proveFile :: FilePath -> IO () -> IO ProofResult
 proveFile file before =
   do putStr "Fixit: "
      before
      putStr "... "
      system ("rm -f " ++ verifyDir ++ "/fixit.lock")
-     lavadir <- getLavaDir
-     x <- system ( lavadir
+     x <- system ( lavaDirectory
                 ++ "/Scripts/fixit.wrapper "
                 ++ file
                 ++ " -showTime -dir=forward -sat=prove"

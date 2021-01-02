@@ -14,7 +14,7 @@ import Generic
 import Sequent
 import Property
 import Error
-import LavaDir
+import LavaConf
 
 import Data.List
   ( intersperse
@@ -259,8 +259,6 @@ data ProofResult
   | Indeterminate
  deriving (Eq, Show)
 
-getLavaDir = return $ "$HOME/.lava"
-
 proveFile :: FilePath -> IO () -> [String] -> [Option] -> IO ProofResult
 proveFile file before labels options =
   do putStr ( "Proving:"
@@ -269,8 +267,7 @@ proveFile file before labels options =
             )
      before
      putStr "... "
-     lavadir <- getLavaDir
-     x <- system ( lavadir
+     x <- system ( lavaDirectory
                 ++ "/Scripts/prover.wrapper "
                 ++ file
                 ++ " "

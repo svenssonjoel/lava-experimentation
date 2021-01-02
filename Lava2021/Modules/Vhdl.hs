@@ -10,7 +10,6 @@ import Netlist
 import Generic
 import Sequent
 import Error
-import LavaDir
 
 import Data.List
   ( intersperse

@@ -9,7 +9,6 @@ import Signal
 import Generic
 
 import Lava
-import LavaDir
 import Sequent
 import Netlist
 import Verification

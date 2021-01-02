@@ -9,7 +9,7 @@ import Generic
 import Sequent
 import Property
 import Error
-import LavaDir
+import LavaConf
 import Verification
 
 import Data.List
@@ -124,8 +124,7 @@ proveFile file before =
      putStr "... "
      putStrLn "(Written file)"
      {-
-     lavadir <- getLavaDir
-     x <- system ( lavadir
+     x <- system ( lavaDirectory
                 ++ "/Scripts/smv.wrapper "
                 ++ file
                 ++ " -showTime"

@@ -28,14 +28,14 @@ dependencies:
 library:
   source-dirs:
   - src
-  - ../Lava2000/Modules
+  - ../Lava2021/Modules
 
 executables:
   test0-exe:
     main:                Main.hs
     source-dirs:
     - app
-    - ../Lava2000/Modules
+    - ../Lava2021/Modules
     ghc-options:
     - -threaded
     - -rtsopts
@@ -48,7 +48,7 @@ tests:
     main:                Spec.hs
     source-dirs:
     - test
-    - ../Lava2000/Modules
+    - ../Lava2021/Modules
     ghc-options:
     - -threaded
     - -rtsopts
