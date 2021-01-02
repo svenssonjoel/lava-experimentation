@@ -41,7 +41,7 @@ import Data.IORef
 --  , writeIORef
 --  )
 
-import System.Cmd (system)
+import System.Process (system)
 import System.Exit (ExitCode(..))
 
 --import System

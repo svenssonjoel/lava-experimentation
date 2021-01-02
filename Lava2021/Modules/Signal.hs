@@ -343,7 +343,7 @@ instance Show a => Show (S a) where
       
       VarBool s     -> showString s
       VarInt  s     -> showString s
-      _             -> showString "<<symbol>>"
+--      _             -> showString "<<symbol>>"
 
 ----------------------------------------------------------------
 -- the end.

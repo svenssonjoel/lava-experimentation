@@ -32,7 +32,7 @@ import System.IO
 import System.IO.Unsafe
 import Data.IORef
 
-import System.Cmd (system)
+import System.Process (system)
 import System.Exit (ExitCode(..))
 
 ----------------------------------------------------------------

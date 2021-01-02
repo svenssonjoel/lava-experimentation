@@ -34,7 +34,7 @@ import Compilers.Ghc.IOBuffering
 
 import Data.IORef
 
-import System.Cmd (system)
+import System.Process (system)
 import System.Exit (ExitCode(..))
 
 ----------------------------------------------------------------

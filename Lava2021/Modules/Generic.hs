@@ -168,7 +168,7 @@ delay x y = construct (del (struct x) (struct y))
  where
   del (Object a)    ~(Object b)    = Object (delaySymbol (ops a) a b)
   del (Compound as) ~(Compound bs) = Compound (lazyZipWith del as bs)
-  del _             _              = wrong Error.IncompatibleStructures
+--  del _             _              = wrong Error.IncompatibleStructures
 
 zeroify :: Generic a => a -> a
 zeroify x = construct (zero (struct x))

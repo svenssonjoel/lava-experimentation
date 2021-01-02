@@ -8,3 +8,5 @@ lavaVersion = "Lava2021"
 lavaDirectory :: String
 lavaDirectory = "$HOME/.lava"
 
+currentMaintainerEmail :: String
+currentMaintainerEmail = "svenssonjoel@yahoo.se"

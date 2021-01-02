@@ -4,6 +4,8 @@ module Error
   )
  where
 
+import LavaConf
+
 ----------------------------------------------------------------
 -- Error
 
@@ -36,11 +38,11 @@ wrong err =
       EnumOnSymbols          -> "enumerating symbolic values"
       
       Internal_OptionNotFound -> internal "option not found"
-      _                       -> internal "unknown error"
+--      _                       -> internal "unknown error"
 
 internal :: String -> String
 internal msg = "INTERNAL ERROR: " ++ msg
-            ++ ".\nPlease report this as a bug to `koen@cs.chalmers.se'."
+            ++ ".\nPlease report this as a bug to " ++ currentMaintainerEmail ++ "."
 
 ----------------------------------------------------------------
 -- the end.

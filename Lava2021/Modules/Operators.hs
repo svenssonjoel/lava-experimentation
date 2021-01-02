@@ -67,6 +67,9 @@ instance SignalInt a => Num (Signal a) where
   x * y    = fromSignalInt $ times (toSignalInt x, toSignalInt y)
   negate x = fromSignalInt $ neg (toSignalInt x)
 
+  -- abs 
+  -- signum
+
   fromInteger = fromSignalInt . int . fromInteger
 
 instance SignalInt a => Fractional (Signal a) where
