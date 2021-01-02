@@ -1,0 +1,77 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: b65644581e3763ba825569a3cda7f505815803a1e40255b6e57a6f035d13a4c7
+
+name:           Lava2021
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/Lava2021#readme>
+homepage:       https://github.com/githubuser/Lava2021#readme
+bug-reports:    https://github.com/githubuser/Lava2021/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2021 Author name here
+license:        BSD3
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/Lava2021
+
+library
+  exposed-modules:
+      Arithmetic
+      Captain
+      Combinational
+      Compilers.Ghc.IOBuffering
+      Compilers.Ghc.LavaRandom
+      Compilers.Ghc.UnsafeCoerce
+      ConstructiveAnalysis
+      Eprover
+      Error
+      Fixit
+      Generic
+      HeerHugo
+      Isc
+      Lava
+      LavaConf
+      LavaMain
+      Limmat
+      Modoc
+      MyST
+      Netlist
+      Operators
+      Patterns
+      Property
+      Ref
+      Retime
+      Satnik
+      Satzoo
+      Sequent
+      Sequential
+      SequentialCircuits
+      SequentialConstructive
+      Signal
+      SignalTry
+      Smv
+      Stable
+      Table
+      Test
+      Verification
+      Vhdl
+      VhdlNew08
+      Vis
+      Zchaff
+  other-modules:
+      Paths_Lava2021
+  hs-source-dirs:
+      Modules
+  build-depends:
+      array
+    , base >=4.7 && <5
+    , process
+    , random
+  default-language: Haskell2010
