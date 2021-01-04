@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3405f362a42595b80bfc73e2e11ea9343f3cf139528b1af4f3b421ada59d257b
+-- hash: 2f591e43421102b0df646957fb56753e84e26735da051e5513bb9c01914c7477
 
 name:           Lava2021
 version:        0.1.0.0
@@ -58,6 +58,7 @@ library
       SignalTry
       Smv
       Stable
+      STDLogic
       Table
       Test
       Verification

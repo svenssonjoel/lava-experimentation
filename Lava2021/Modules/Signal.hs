@@ -8,6 +8,8 @@ import Data.List
   ( transpose
   )
 
+import STDLogic
+
 ----------------------------------------------------------------
 -- Signal, Symbol, S
 
@@ -37,6 +39,10 @@ data S s
   | If       s s s
   | VarInt   String
   | DelayInt s s
+
+  | STDLogic STDLogic
+  | Foreign  String [s]
+  
 
 symbol :: S Symbol -> Symbol
 symbol = Symbol . ref
