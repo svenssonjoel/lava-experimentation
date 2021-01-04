@@ -3,10 +3,10 @@ module Main where
 import Lib
 
 import Lava
-import Arithmetic
-import SequentialCircuits
+import Lava.Arithmetic
+import Lava.SequentialCircuits
 
-import Vhdl
+import Lava.Vhdl
 
 ------------------------------------------------------------
 -- Lava experimentation test 0
