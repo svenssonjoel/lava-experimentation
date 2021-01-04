@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2f591e43421102b0df646957fb56753e84e26735da051e5513bb9c01914c7477
+-- hash: 240569a647205a6ee16d3d9a3d3b4391f441cb9abe960aa2196774e627d09c36
 
 name:           Lava2021
 version:        0.1.0.0
@@ -23,53 +23,54 @@ source-repository head
 
 library
   exposed-modules:
-      Arithmetic
-      Captain
-      Combinational
-      Compilers.Ghc.IOBuffering
-      Compilers.Ghc.LavaRandom
-      Compilers.Ghc.UnsafeCoerce
-      ConstructiveAnalysis
-      Eprover
-      Error
-      Fixit
-      Generic
-      HeerHugo
-      Isc
       Lava
-      LavaConf
-      LavaMain
-      Limmat
-      Modoc
-      MyST
-      Netlist
-      Operators
-      Patterns
-      Property
-      Ref
-      Retime
-      Satnik
-      Satzoo
-      Sequent
-      Sequential
-      SequentialCircuits
-      SequentialConstructive
-      Signal
-      SignalTry
-      Smv
-      Stable
-      STDLogic
-      Table
-      Test
-      Verification
-      Vhdl
-      VhdlNew08
-      Vis
-      Zchaff
+      Lava.Arithmetic
+      Lava.Captain
+      Lava.Combinational
+      Lava.Compilers.Ghc.IOBuffering
+      Lava.Compilers.Ghc.LavaRandom
+      Lava.Compilers.Ghc.UnsafeCoerce
+      Lava.ConstructiveAnalysis
+      Lava.Eprover
+      Lava.Error
+      Lava.Fixit
+      Lava.Generic
+      Lava.HeerHugo
+      Lava.Isc
+      Lava.LavaConf
+      Lava.LavaMain
+      Lava.Limmat
+      Lava.Minisat
+      Lava.Modoc
+      Lava.MyST
+      Lava.Netlist
+      Lava.Operators
+      Lava.Patterns
+      Lava.Property
+      Lava.Ref
+      Lava.Retime
+      Lava.Satnik
+      Lava.Satzoo
+      Lava.Sequent
+      Lava.Sequential
+      Lava.SequentialCircuits
+      Lava.SequentialConstructive
+      Lava.Signal
+      Lava.SignalTry
+      Lava.Smv
+      Lava.Stable
+      Lava.STDLogic
+      Lava.Table
+      Lava.Test
+      Lava.Verification
+      Lava.Vhdl
+      Lava.VhdlNew08
+      Lava.Vis
+      Lava.Zchaff
   other-modules:
       Paths_Lava2021
   hs-source-dirs:
-      Modules
+      src
   build-depends:
       array
     , base >=4.7 && <5

@@ -27,7 +27,7 @@ dependencies:
 
 
 library:
-  source-dirs: Modules
+  source-dirs: src
 
 tests:
   Lava2021-test:
