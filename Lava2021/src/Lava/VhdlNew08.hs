@@ -31,24 +31,9 @@ import Lava.Compilers.Ghc.IOBuffering
 
 import Data.IORef
 
---import IOBuffering
---  ( noBuffering
---  )
-
---import IOExts
---  ( IORef
---  , newIORef
---  , readIORef
---  , writeIORef
---  )
-
 import System.Process (system)
 import System.Exit (ExitCode(..))
 
---import System
---  ( system
---  , ExitCode(..)
---  )
 
 ----------------------------------------------------------------
 -- write vhdl
