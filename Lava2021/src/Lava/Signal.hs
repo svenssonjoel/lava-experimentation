@@ -8,8 +8,6 @@ import Data.List
   ( transpose
   )
 
-import Lava.STDLogic
-
 ----------------------------------------------------------------
 -- Signal, Symbol, S
 
@@ -40,7 +38,6 @@ data S s
   | VarInt   String
   | DelayInt s s
 
-  | STDLogic STDLogic
   | Foreign  String [s]
   
 
