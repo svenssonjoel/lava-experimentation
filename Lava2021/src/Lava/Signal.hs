@@ -16,7 +16,7 @@ newtype Signal a
 
 newtype Symbol
   = Symbol (Ref (S Symbol))
-
+    
 data S s
   = Bool      Bool
   | Inv       s
@@ -25,7 +25,8 @@ data S s
   | Xor       [s]
   | VarBool   String
   | DelayBool s s
-  
+
+  -- Remove the Int stuff 
   | Int      Int
   | Neg      s
   | Div      s s
@@ -38,9 +39,20 @@ data S s
   | VarInt   String
   | DelayInt s s
 
-  | Foreign  String [s]
-  
+  -- 
+  | BitVec
+    Int -- Number of elements
+    Int -- Value Number
+    [s] -- Values
+  | DelayBitVec s s 
 
+  | Component
+    String     -- name
+    Int        -- Number of outputs
+    Int        -- Output number
+    [s]        -- inputs
+  
+    
 symbol :: S Symbol -> Symbol
 symbol = Symbol . ref
 
@@ -49,6 +61,25 @@ unsymbol (Symbol r) = deref r
 
 instance Eq (Signal a) where
   Signal (Symbol r1) == Signal (Symbol r2) = r1 == r2
+
+----------------------------------------------------------------
+-- BitVec
+
+data BitVec
+  
+
+mkBitVec :: [Signal Bool] -> Signal (BitVec)
+mkBitVec sigs = liftl (BitVec n (-1)) sigs
+ where n = length sigs
+
+----------------------------------------------------------------
+-- Component
+
+mkComponent :: String -> Int -> [Signal a] -> [Signal b]
+mkComponent name outs ins =
+  [liftl (Component name outs i) ins | i <- [0..outs-1]]
+
+
 
 ----------------------------------------------------------------
 -- operations
@@ -115,6 +146,11 @@ delayInt = lift2 DelayInt
 
 varInt :: String -> Signal Int
 varInt s = lift0 (VarInt s)
+
+-- on BitVec
+
+varBitVec :: String -> Int -> Signal (BitVec)
+varBitVec s n = mkBitVec [varBool (s ++ (show i)) | i <- [0..n-1]]
 
 -- liftings
 
