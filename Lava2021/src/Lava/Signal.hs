@@ -72,6 +72,15 @@ mkBitVec :: [Signal Bool] -> Signal (BitVec)
 mkBitVec sigs = liftl (BitVec n (-1)) sigs
  where n = length sigs
 
+
+packVec :: [Signal Bool] -> Signal (BitVec)
+packVec sigs = mkBitVec sigs
+
+unpackVec :: Signal BitVec -> [Signal Bool]
+unpackVec (Signal s) = case unsymbol s of
+                         BitVec n _ sigs -> [liftl (BitVec n i) (map (\a -> Signal a) sigs) | i <- [0..n-1]]
+                         _ -> wrong Lava.Error.IncompatibleStructures
+
 ----------------------------------------------------------------
 -- Component
 

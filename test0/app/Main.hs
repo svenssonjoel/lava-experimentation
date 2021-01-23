@@ -15,6 +15,14 @@ test_seq :: IO ()
 test_seq = writeVhdl "seq0" (edge . toggle)
 
 
+compBitwiseInv :: Signal BitVec -> Signal BitVec
+compBitwiseInv s = head $ mkComponent ("bitwise_neg_" ++ (show n)) n [s]
+  where
+    sigs = unpackVec s
+    n = length sigs 
+
+
+
 main :: IO ()
 main =
   do
