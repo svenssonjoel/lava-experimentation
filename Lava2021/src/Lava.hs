@@ -1,6 +1,7 @@
 module Lava
   ( module Lava.Signal
   , module Lava.Vector
+  , module Lava.Component
   , module Lava.Generic
   , module Lava.Operators
   , module Lava.Combinational
@@ -21,6 +22,7 @@ module Lava
 
 import Lava.Signal
 import Lava.Vector
+import Lava.Component
 import Lava.Generic
 import Lava.Operators
 import Lava.Combinational

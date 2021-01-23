@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 31b3aa8410efeb06431b1066f000a9b6df395ca473d312d3010fe59aaa95ef8d
+-- hash: 29907e6496f6e48399d5f432e67d194abcee5d2446c4b145fcc5eeb10229b550
 
 name:           Lava2021
 version:        0.1.0.0
@@ -30,6 +30,7 @@ library
       Lava.Compilers.Ghc.IOBuffering
       Lava.Compilers.Ghc.LavaRandom
       Lava.Compilers.Ghc.UnsafeCoerce
+      Lava.Component
       Lava.ConstructiveAnalysis
       Lava.Eprover
       Lava.Error

@@ -1,4 +1,18 @@
 
+-- Copyright 2021 Bo Joel Svensson
+
+--    Licensed under the Apache License, Version 2.0 (the "License");
+--    you may not use this file except in compliance with the License.
+--    You may obtain a copy of the License at
+
+--        http://www.apache.org/licenses/LICENSE-2.0
+
+--    Unless required by applicable law or agreed to in writing, software
+--    distributed under the License is distributed on an "AS IS" BASIS,
+--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+--    See the License for the specific language governing permissions and
+--    limitations under the License.
+
 module Lava.Vector where
 
 import Lava.Ref
@@ -16,7 +30,6 @@ instance Generic (Vector a) where
 instance Eq (Vector a) where
   Vector (Symbol r1) == Vector (Symbol r2) = r1 == r2
 
-
 class Elt a where
   unwrapElt :: a -> Symbol
   wrapElt   :: Symbol -> a
@@ -28,7 +41,6 @@ instance Elt (Signal a) where
 instance Elt (Vector a) where
   unwrapElt (Vector s) = s
   wrapElt s = Vector s
-
   
 mkVec :: Elt a => [a] -> Vector a
 mkVec sigs = genericLift0 (Vec n (-1) (map unwrapElt sigs))

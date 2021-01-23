@@ -62,13 +62,6 @@ instance Eq (Signal a) where
   Signal (Symbol r1) == Signal (Symbol r2) = r1 == r2
 
 ----------------------------------------------------------------
--- Component
-
-mkComponent :: String -> Int -> [Signal a] -> [Signal b]
-mkComponent name outs ins =
-  [liftl (Component name outs i) ins | i <- [0..outs-1]]
-
-----------------------------------------------------------------
 -- operations
 
 -- on bits
