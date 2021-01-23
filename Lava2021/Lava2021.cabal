@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c66304ae89434671db2b82b17e71f9c84b63169577ad6351dfa2bf967d3a0ccc
+-- hash: 31b3aa8410efeb06431b1066f000a9b6df395ca473d312d3010fe59aaa95ef8d
 
 name:           Lava2021
 version:        0.1.0.0
@@ -61,6 +61,7 @@ library
       Lava.Stable
       Lava.Table
       Lava.Test
+      Lava.Vector
       Lava.Verification
       Lava.Vhdl
       Lava.VhdlNew08

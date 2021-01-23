@@ -19,7 +19,8 @@ data Error
   | NoEquality
   | NoArithmetic
   | EnumOnSymbols
-
+  | NotAVec
+  
   | Internal_OptionNotFound
  deriving (Eq, Show)
 
@@ -36,6 +37,7 @@ wrong err =
       NoEquality             -> "no equality defined for this type"
       NoArithmetic           -> "arithmetic operations are not supported"
       EnumOnSymbols          -> "enumerating symbolic values"
+      NotAVec                -> "not a vector"
       
       Internal_OptionNotFound -> internal "option not found"
 --      _                       -> internal "unknown error"

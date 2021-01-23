@@ -39,12 +39,11 @@ data S s
   | VarInt   String
   | DelayInt s s
 
-  -- 
-  | BitVec
+  | Vec -- A vector of signals
     Int -- Number of elements
     Int -- Value Number
     [s] -- Values
-  | DelayBitVec s s 
+  | DelayVec s s 
 
   | Component
     String     -- name
@@ -63,32 +62,11 @@ instance Eq (Signal a) where
   Signal (Symbol r1) == Signal (Symbol r2) = r1 == r2
 
 ----------------------------------------------------------------
--- BitVec
-
-data BitVec
-  
-
-mkBitVec :: [Signal Bool] -> Signal (BitVec)
-mkBitVec sigs = liftl (BitVec n (-1)) sigs
- where n = length sigs
-
-
-packVec :: [Signal Bool] -> Signal (BitVec)
-packVec sigs = mkBitVec sigs
-
-unpackVec :: Signal BitVec -> [Signal Bool]
-unpackVec (Signal s) = case unsymbol s of
-                         BitVec n _ sigs -> [liftl (BitVec n i) (map (\a -> Signal a) sigs) | i <- [0..n-1]]
-                         _ -> wrong Lava.Error.IncompatibleStructures
-
-----------------------------------------------------------------
 -- Component
 
 mkComponent :: String -> Int -> [Signal a] -> [Signal b]
 mkComponent name outs ins =
   [liftl (Component name outs i) ins | i <- [0..outs-1]]
-
-
 
 ----------------------------------------------------------------
 -- operations
@@ -155,11 +133,6 @@ delayInt = lift2 DelayInt
 
 varInt :: String -> Signal Int
 varInt s = lift0 (VarInt s)
-
--- on BitVec
-
-varBitVec :: String -> Int -> Signal (BitVec)
-varBitVec s n = mkBitVec [varBool (s ++ (show i)) | i <- [0..n-1]]
 
 -- liftings
 
