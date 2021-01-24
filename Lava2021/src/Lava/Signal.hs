@@ -39,11 +39,12 @@ data S s
   | VarInt   String
   | DelayInt s s
 
+  -- Maybe split up the vector into two
+  -- constructors as with components.. 
   | Vec -- A vector of signals
     Int -- Number of elements
     Int -- Value Number
     [s] -- Values
-  | DelayVec s s 
 
   | Component
     String           -- name
@@ -61,7 +62,8 @@ data CompOut
   = BitOutput   Int
   | VecOutput   Int Int [CompOut]
   | TupleOutput Int Int [CompOut]
-    
+  deriving (Eq, Show)
+
 symbol :: S Symbol -> Symbol
 symbol = Symbol . ref
 
@@ -367,6 +369,26 @@ instance Show a => Show (S a) where
       
       VarBool s     -> showString s
       VarInt  s     -> showString s
+
+      Vec i j xs    -> showString ("Vector " ++ show i ++ " " ++ show j) . showList xs 
+      Component nom  xs -> showString nom . showList xs
+      ComponentOutput s bit -> showString ("Output " ++ (show bit) ++ "of") . showList [s]
+      
+  -- | Vec -- A vector of signals
+  --   Int -- Number of elements
+  --   Int -- Value Number
+  --   [s] -- Values
+
+  -- | Component
+  --   String           -- name
+  --   [s]              -- inputs
+
+  -- | ComponentOutput
+  --   s                -- Component producing output
+  --   CompOut          -- A specific output bit
+
+
+      
 --      _             -> showString "<<symbol>>"
 
 ----------------------------------------------------------------

@@ -30,6 +30,12 @@ instance Generic (Vector a) where
 instance Eq (Vector a) where
   Vector (Symbol r1) == Vector (Symbol r2) = r1 == r2
 
+instance Show (Vector a) where
+  showsPrec n (Vector s) =
+    showsPrec n s
+
+
+
 class Elt a where
   unwrapElt :: a -> Symbol
   wrapElt   :: Symbol -> a
