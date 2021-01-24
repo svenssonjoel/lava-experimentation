@@ -55,6 +55,7 @@ data CompOut
   | VecOutput   Int Int CompOut
   | TupleOutput Int Int [CompOut]
   deriving (Eq, Show)
+-- TupleOutput only allowed as the toplevel 
 
 symbol :: S Symbol -> Symbol
 symbol = Symbol . ref

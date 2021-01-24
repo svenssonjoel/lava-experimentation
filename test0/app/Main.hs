@@ -22,6 +22,15 @@ apa a b = bitwiseNeg (bitwiseAnd a b)
 bepa :: (Signal Bool, Signal Bool)
 bepa = fullAdder low high low
 
+-- Probably not correct ;) 
+add :: Vector (Signal Bool) -> Vector (Signal Bool) -> Vector (Signal Bool)
+add a b = packVec $ snd $ foldr (\(i,j) (cin,sums) ->
+                                    let (s, cout) = fullAdder i j cin
+                                    in (cout, s:sums)) (low,[]) (zip (reverse a')
+                                                                     (reverse b'))
+  where a' = unpackVec a
+        b' = unpackVec b
+
 main :: IO ()
 main =
   do
@@ -36,20 +45,8 @@ main =
 
     putStrLn (show bepa)
 
-{-
-Vector 2 [VecOutput 2 0 BitOutput of
-            [bitwise_neg [Vector 2 [VecOutput 2 0 BitOutput of
-                                      [bitwiseAnd [Vector 2 [high,low],Vector 2[low,high]]]
-                                   ,VecOutput 2 1 BitOutput of
-                                      [bitwiseAnd [Vector 2 [high,low],Vector 2[low,high]]]]]]
-         ,VecOutput 2 1 BitOutput of
-            [bitwise_neg [Vector 2 [VecOutput 2 0 BitOutput of [bitwiseAnd [Vector 2 [high,low],Vector 2 [low,high]]]
-                                   ,VecOutput 2 1 BitOutput of [bitwiseAnd [Vector 2 [high,low],Vector 2 [low,high]]]]]]]
-----------------------
-(TupleOutput 2 0 [BitOutput,BitOutput] of
-    [fullAdder [low,high,low]]
-,TupleOutput 2 1 [BitOutput,BitOutput] of
-    [fullAdder[low,high,low]])
+    putStrLn "----------------------"
 
-
--}
+    putStrLn (show (add
+                    (packVec [bool True, bool False])
+                    (packVec [bool False, bool True])))
