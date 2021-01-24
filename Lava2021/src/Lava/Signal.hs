@@ -46,11 +46,21 @@ data S s
   | DelayVec s s 
 
   | Component
-    String     -- name
-    Int        -- Number of outputs
-    Int        -- Output number
-    [s]        -- inputs
-  
+    String           -- name
+    [s]              -- inputs
+
+  | ComponentOutput
+    s                -- Component producing output
+    CompOut          -- A specific output bit
+
+-- Identifier for component outputs
+-- BitOutput has an index
+-- VecOutput has a length and an index
+-- TupleOutput has a length and an index
+data CompOut
+  = BitOutput   Int
+  | VecOutput   Int Int [CompOut]
+  | TupleOutput Int Int [CompOut]
     
 symbol :: S Symbol -> Symbol
 symbol = Symbol . ref

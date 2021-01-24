@@ -46,6 +46,9 @@ mkVec :: Elt a => [a] -> Vector a
 mkVec sigs = genericLift0 (Vec n (-1) (map unwrapElt sigs))
  where n = length sigs
 
+unVec :: Elt a => Vector a -> Symbol
+unVec (Vector s) = s
+
 packVec :: Elt a => [a] -> Vector a
 packVec sigs = mkVec sigs
 
@@ -57,6 +60,12 @@ unpackVec (Vector s) = case unsymbol s of
                          _ -> wrong Lava.Error.NotAVec
 
 -- Operations
+
+lengthVec :: Elt a => Vector a -> Int
+lengthVec v = case unsymbol (unwrapElt v) of
+                Vec n _ sigs -> n
+                _ -> wrong Lava.Error.NotAVec
+
 
 varVec :: String -> Int -> Vector (Signal Bool)
 varVec s n = mkVec [varBool (s ++ (show i)) | i <- [0..n-1]]

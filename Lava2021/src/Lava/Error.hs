@@ -20,6 +20,7 @@ data Error
   | NoArithmetic
   | EnumOnSymbols
   | NotAVec
+  | VecSizeMismatch
   
   | Internal_OptionNotFound
  deriving (Eq, Show)
@@ -38,6 +39,7 @@ wrong err =
       NoArithmetic           -> "arithmetic operations are not supported"
       EnumOnSymbols          -> "enumerating symbolic values"
       NotAVec                -> "not a vector"
+      VecSizeMismatch        -> "vector sizes not compatible"      
       
       Internal_OptionNotFound -> internal "option not found"
 --      _                       -> internal "unknown error"
