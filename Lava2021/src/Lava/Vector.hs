@@ -34,8 +34,6 @@ instance Show (Vector a) where
   showsPrec n (Vector s) =
     showsPrec n s
 
-
-
 class Elt a where
   unwrapElt :: a -> Symbol
   wrapElt   :: Symbol -> a
@@ -49,7 +47,7 @@ instance Elt (Vector a) where
   wrapElt s = Vector s
   
 mkVec :: Elt a => [a] -> Vector a
-mkVec sigs = genericLift0 (Vec n (-1) (map unwrapElt sigs))
+mkVec sigs = genericLift0 (Vec n (map unwrapElt sigs))
  where n = length sigs
 
 unVec :: Elt a => Vector a -> Symbol
@@ -60,16 +58,16 @@ packVec sigs = mkVec sigs
 
 unpackVec :: Elt a => Vector a -> [a]
 unpackVec (Vector s) = case unsymbol s of
-                         Vec n _ sigs -> [genericLift0
-                                           (Vec n i sigs) 
-                                         | i <- [0..n-1]]
+                         Vec n sigs -> [genericLift0
+                                         (VecIndex i s) 
+                                       | i <- [0..n-1]]
                          _ -> wrong Lava.Error.NotAVec
 
 -- Operations
 
 lengthVec :: Elt a => Vector a -> Int
 lengthVec v = case unsymbol (unwrapElt v) of
-                Vec n _ sigs -> n
+                Vec n sigs -> n
                 _ -> wrong Lava.Error.NotAVec
 
 

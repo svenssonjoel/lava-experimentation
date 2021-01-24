@@ -39,20 +39,23 @@ data S s
   | VarInt   String
   | DelayInt s s
 
-  -- Maybe split up the vector into two
-  -- constructors as with components.. 
+  -- A node that collects several signals of the
+  -- same type into a vector. 
   | Vec -- A vector of signals
     Int -- Number of elements
-    Int -- Value Number
     [s] -- Values
+
+  -- Index into a vector. s must be a Vec node!
+  | VecIndex Int s 
 
   | Component
     String           -- name
     [s]              -- inputs
 
+  -- Accessing an ouput from a component (indexing)
   | ComponentOutput
-    s                -- Component producing output
     CompOut          -- A specific output bit
+    s                -- Component producing output
 
 -- Identifier for component outputs
 -- BitOutput has an index
@@ -69,6 +72,9 @@ symbol = Symbol . ref
 
 unsymbol :: Symbol -> S Symbol
 unsymbol (Symbol r) = deref r
+
+unsignal :: Signal a -> Symbol
+unsignal (Signal s) = s
 
 instance Eq (Signal a) where
   Signal (Symbol r1) == Signal (Symbol r2) = r1 == r2
@@ -370,9 +376,10 @@ instance Show a => Show (S a) where
       VarBool s     -> showString s
       VarInt  s     -> showString s
 
-      Vec i j xs    -> showString ("Vector " ++ show i ++ " " ++ show j) . showList xs 
+      Vec i xs    -> showString ("Vector " ++ show i) . showList xs
+      VecIndex i s  -> showString ("Index " ++ show i) . showList [s]
       Component nom  xs -> showString nom . showList xs
-      ComponentOutput s bit -> showString ("Output " ++ (show bit) ++ "of") . showList [s]
+      ComponentOutput bit s -> showString ((show bit) ++ " of ") . showList [s]
       
   -- | Vec -- A vector of signals
   --   Int -- Number of elements
