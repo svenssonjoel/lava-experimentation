@@ -42,24 +42,6 @@ multi (a:as, bs) = m : ms
     asbs    = multi (as, bs)
     (ms,_)  = adder (low, (abs, asbs))
 
-numBreak num = (bit, num')
-  where
-    digit = imod (num, 2)
-    bit   = int2bit digit
-    num'  = idiv (num, 2)
-
-int2bin 0 num = []
-int2bin n num = (bit:bits)
-  where
-    (bit,num') = numBreak num
-    bits       = int2bin (n-1) num'
-
-bin2int []     = 0
-bin2int (b:bs) = num
-  where
-    num' = bin2int bs
-    num  = bit2int b + 2 * num'
-
 ----------------------------------------------------------------
 -- the end.
 

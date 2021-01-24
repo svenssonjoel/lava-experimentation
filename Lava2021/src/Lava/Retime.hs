@@ -30,14 +30,8 @@ timeTransform circ inps@(inp:_) =
 
   phi (DelayBool ini next) =
     delay DelayBool ini next
-  
-  phi (DelayInt ini next) =
-    delay DelayInt ini next
-  
+    
   phi (VarBool s) | tag `isPrefixOf` s =
-    var (drop (length tag) s)
-
-  phi (VarInt s) | tag `isPrefixOf` s =
     var (drop (length tag) s)
 
   phi s =

@@ -51,7 +51,6 @@ simulateSeq circ inps = runST (
          define r s =
            case s of
              DelayBool s s' -> delay s s'
-             DelayInt  s s' -> delay s s'
              _ ->
                do relate r (arguments s) $
                     eval `fmap` mmap (readSTRef . fst) s

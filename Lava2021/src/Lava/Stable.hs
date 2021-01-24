@@ -39,9 +39,6 @@ stable inp =
            define out (DelayBool _ inn) =
              do addStable (out <==> inn)
              
-           define out (DelayInt _ inn) =
-             do addStable (out <==> inn)
-             
            define _ _ =
              do return ()
 

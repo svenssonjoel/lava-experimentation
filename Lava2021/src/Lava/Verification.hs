@@ -307,7 +307,6 @@ writeDefinitions file props =
            do hPutStr han (def ++ ";\n")
               case s of
                 DelayBool x y -> state ("<->",the y)
-                DelayInt  x y -> state ("=",the y)
                 _             -> return ()
           where
            def =
@@ -319,21 +318,11 @@ writeDefinitions file props =
                Or  xs     -> prop $ opl "OR"  "," xs "FALSE"
                Xor xs     -> prop $ opl "XOR" "," xs "FALSE"
 
-               Int   n    -> arit $ show n
-               Neg   x    -> arit $ op1 "-" x
-               Div   x y  -> arit $ op2 "/" x y
-               Mod   x y  -> arit $ op2 "%" x y
-               Plus  xs   -> arit $ opl "" "+" xs "0"
-               Times xs   -> arit $ opl "" "*" xs "1"
-               Gte   x y  -> prop $ op2 ">=" x y
-               Equal xs   -> prop $ equal xs
                If x y z   -> iff x (op2 "=" v y) (op2 "=" v z)
 
                VarBool s  -> prop $ op0 (Now s)
-               VarInt  s  -> arit $ op0 (Now s)
 
                DelayBool x y -> iff ini (prop (op0 x)) (prop (op0 (pre y)))
-               DelayInt  x y -> iff ini (arit (op0 x)) (arit (op0 (pre y)))
 
            prop form =
              "(" ++ show v ++ " <-> (" ++ form ++ "))"

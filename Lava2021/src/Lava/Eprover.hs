@@ -81,21 +81,9 @@ writeDefinitions file props =
                   Or  xs     -> opl (int 0) "or" xs
                   Xor xs     -> xor xs
 
-                  Int n      -> int n
-                  Neg x      -> op1 "neg" x
-                  Div x y    -> op2 "div" x y
-                  Mod x y    -> op2 "mod" x y
-                  Plus xs    -> opl (int 0) "add" xs
-                  Times xs   -> opl (int 1) "mul" xs
-                  Gte x y    -> op2 "gte" x y
                   If x y z   -> op3 "if" x y z
-                  VarInt s   -> s
-
-                  Equal []     -> int 1
-                  Equal (x:xs) -> opl (int 1) "and" [op2 "eq" x y | y <- xs]
 
                   DelayBool x y -> wrong Lava.Error.DelayEval
-                  DelayInt  x y -> wrong Lava.Error.DelayEval
            where
             definition v s =
               clause "axiom" [ "++equal(" ++ v ++ ":" ++ s ++ "," ++ v ++ ")" ]

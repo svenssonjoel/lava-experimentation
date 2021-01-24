@@ -262,7 +262,6 @@ name :: Signal a -> String
 name (Signal s) =
   case unsymbol s of
     VarBool v -> v
-    VarInt v  -> v
     _         -> error "no name"
 
 class ShowModel a where

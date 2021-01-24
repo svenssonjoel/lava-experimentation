@@ -48,9 +48,6 @@ simulateCon circ inps = unsafePerformIO $
         define rwire (DelayBool init next) =
           do delay rwire init next
 
-        define rwire (DelayInt init next) =
-          do delay rwire init next
-
         define rwire sym =
           case arguments sym of
             []   -> addSet macro constant
@@ -112,7 +109,6 @@ simulateCon circ inps = unsafePerformIO $
                        sequence_ [ addSet micro comp | comp <- components wire ]
 
         Bool b1 =/= Bool b2 = b1 /= b2
-        Int  n1 =/= Int  n2 = n1 /= n2
         _       =/= _       = True
 
     sr <- netlistIO new define (struct (circ (input inps)))

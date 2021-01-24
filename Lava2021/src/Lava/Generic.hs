@@ -113,15 +113,6 @@ opsBool =
       , zeroSymbol  =             symbol (Bool False)
       }
 
-opsInt :: Ops
-opsInt =
-  Ops { equalSymbol = \x y     -> equalInt (Signal x) (Signal y)
-      , delaySymbol = \x y     -> unSignal $ delayInt (Signal x) (Signal y)
-      , ifSymbol    = \c (x,y) -> unSignal $ ifInt c  (Signal x,  Signal y)
-      , varSymbol   = \s       -> symbol (VarInt s)
-      , zeroSymbol  =             symbol (Int 0)
-      }
-
 unSignal :: Signal a -> Symbol
 unSignal (Signal s) = s
 
@@ -134,20 +125,8 @@ ops s =
     Or xs          -> opsBool
     Xor xs         -> opsBool
 
-    Int n          -> opsInt
-    Neg s          -> opsInt
-    Div s1 s2      -> opsInt
-    Mod s1 s2      -> opsInt
-    Plus xs        -> opsInt
-    Times xs       -> opsInt
-    Gte x y        -> opsBool
-    Equal xs       -> opsBool
-    If x y z       -> opsInt
-
     DelayBool s s' -> opsBool
-    DelayInt  s s' -> opsInt
     VarBool s      -> opsBool
-    VarInt  s      -> opsInt
 
 ----------------------------------------------------------------
 -- generic definitions
@@ -233,16 +212,6 @@ instance ConstructiveSig Bool where
     (rnd1,rnd2) = split rnd
     n           = 30 + (valRnd rnd1 `mod` 10)
     bit rnd     = bool (even (valRnd rnd))
-    looping xs  = out where out = foldr delay out xs
-
-instance ConstructiveSig Int where
-  zeroSig     = int 0
-  varSig      = varInt
-  randomSig rnd = looping (take n [ num rnd' | rnd' <- splitRndList rnd2 ])
-   where
-    (rnd1,rnd2) = split rnd
-    n           = 30 + (valRnd rnd1 `mod` 10)
-    num rnd     = int (20 + (valRnd rnd `mod` 20))
     looping xs  = out where out = foldr delay out xs
 
 instance ConstructiveSig a => Constructive (Signal a) where
