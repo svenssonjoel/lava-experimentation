@@ -62,8 +62,8 @@ data S s
 -- VecOutput has a length and an index
 -- TupleOutput has a length and an index
 data CompOut
-  = BitOutput   Int
-  | VecOutput   Int Int [CompOut]
+  = BitOutput  
+  | VecOutput   Int Int CompOut
   | TupleOutput Int Int [CompOut]
   deriving (Eq, Show)
 

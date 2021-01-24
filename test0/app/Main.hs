@@ -37,25 +37,19 @@ main =
     putStrLn (show bepa)
 
 {-
-Vector 2 -1
-  [Output VecOutput 1 0 [BitOutput 0] of
-        [bitwise_neg [Vector 2 -1
-                         [Output VecOutput 1 0 [BitOutput 0] of [bitwiseAnd [Vector 2 -1 [high,low], Vector 2 -1 [low,high]]]
-                         ,Output VecOutput 1 0 [BitOutput 1] of [bitwiseAnd [Vector 2 -1 [high,low], Vector 2 -1 [low,high]]]]]]
-  ,Output VecOutput 1 0 [BitOutput 1] of
-        [bitwise_neg [Vector 2 -1
-                         [Output VecOutput 1 0 [BitOutput 0] of [bitwiseAnd [Vector 2 -1 [high,low], Vector 2 -1 [low,high]]]
-                         ,Output VecOutput 1 0 [BitOutput 1] of [bitwiseAnd [Vector 2 -1 [high,low], Vector 2 -1 [low,high]]]]]]]
--} 
+Vector 2 [VecOutput 2 0 BitOutput of
+            [bitwise_neg [Vector 2 [VecOutput 2 0 BitOutput of
+                                      [bitwiseAnd [Vector 2 [high,low],Vector 2[low,high]]]
+                                   ,VecOutput 2 1 BitOutput of
+                                      [bitwiseAnd [Vector 2 [high,low],Vector 2[low,high]]]]]]
+         ,VecOutput 2 1 BitOutput of
+            [bitwise_neg [Vector 2 [VecOutput 2 0 BitOutput of [bitwiseAnd [Vector 2 [high,low],Vector 2 [low,high]]]
+                                   ,VecOutput 2 1 BitOutput of [bitwiseAnd [Vector 2 [high,low],Vector 2 [low,high]]]]]]]
+----------------------
+(TupleOutput 2 0 [BitOutput,BitOutput] of
+    [fullAdder [low,high,low]]
+,TupleOutput 2 1 [BitOutput,BitOutput] of
+    [fullAdder[low,high,low]])
 
-{-
-Vector 2
-  [Output VecOutput 1 0 [BitOutput 0] of
-        [bitwise_neg [Vector 2
-                        [Output VecOutput 1 0 [BitOutput 0] of [bitwiseAnd[Vector 2[high,low], Vector 2 [low,high]]]
-                        ,Output VecOutput 1 0 [BitOutput 1] of [bitwiseAnd[Vector 2[high,low], Vector 2 [low,high]]]]]]
-  ,Output VecOutput 1 0 [BitOutput 1] of
-        [bitwise_neg [Vector 2
-                        [Output VecOutput 1 0 [BitOutput 0] of [bitwiseAnd [Vector 2 [high,low], Vector 2 [low,high]]]
-                        ,Output VecOutput 1 0 [BitOutput 1] of [bitwiseAnd [Vector 2 [high,low], Vector 2 [low,high]]]]]]]
+
 -}
